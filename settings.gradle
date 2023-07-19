@@ -1,2 +1,3 @@
 rootProject.name = 'bjo_algorithm'
+include 'generator'
 

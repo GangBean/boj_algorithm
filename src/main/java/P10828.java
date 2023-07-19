@@ -1,12 +1,8 @@
-package algo;
-
 import java.io.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 
-public class P_10828 {
+public class P10828 {
 
     /**
      * 정수를 저장하는 스택을 구현한 다음, 입력으로 주어지는 명령을 처리하는 프로그램을 작성하시오.
