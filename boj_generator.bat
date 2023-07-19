@@ -1,0 +1,1 @@
+java -jar boj_generator.jar
