@@ -59,20 +59,20 @@ public class ProblemClassGenerator {
     private static String getClassFile(int problemNumber, String problemDescription,
         String problemInput, String problemOutput) {
         return new StringBuilder().append("public class P").append(problemNumber).append(" {\n\n")
-            .append(ONE_LEVEL_INDENT).append("/**").append("\n")
-            .append(COMMENT_INDENT).append("[문제]").append("\n")
-            .append(COMMENT_INDENT).append(problemDescription).append("\n").append("\n")
-            .append(COMMENT_INDENT).append("\n")
-            .append(COMMENT_INDENT).append("[입력]").append("\n")
-            .append(COMMENT_INDENT).append(problemInput).append("\n").append("\n")
-            .append(COMMENT_INDENT).append("\n")
-            .append(COMMENT_INDENT).append("[출력]").append("\n")
-            .append(COMMENT_INDENT).append(problemOutput).append("\n").append("\n")
-            .append(COMMENT_END).append("\n")
-            .append(ONE_LEVEL_INDENT).append("public static void main(String[] args) throws IOException {").append("\n")
-            .append(ONE_LEVEL_INDENT).append("}").append("\n")
-                .append(ONE_LEVEL_INDENT).append("BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));\n")
-                .append(ONE_LEVEL_INDENT).append("String s = reader.readLine();")
-            .append("}").toString();
+                .append(ONE_LEVEL_INDENT).append("/**").append("\n")
+                .append(COMMENT_INDENT).append("[문제]").append("\n")
+                .append(COMMENT_INDENT).append(problemDescription).append("\n").append("\n")
+                .append(COMMENT_INDENT).append("\n")
+                .append(COMMENT_INDENT).append("[입력]").append("\n")
+                .append(COMMENT_INDENT).append(problemInput).append("\n").append("\n")
+                .append(COMMENT_INDENT).append("\n")
+                .append(COMMENT_INDENT).append("[출력]").append("\n")
+                .append(COMMENT_INDENT).append(problemOutput).append("\n").append("\n")
+                .append(COMMENT_END).append("\n")
+                .append(ONE_LEVEL_INDENT).append("public static void main(String[] args) throws IOException {").append("\n")
+                .append(ONE_LEVEL_INDENT).append(ONE_LEVEL_INDENT).append("BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));\n")
+                .append(ONE_LEVEL_INDENT).append(ONE_LEVEL_INDENT).append("String s = reader.readLine();\n")
+                .append(ONE_LEVEL_INDENT).append("}").append("\n")
+                .append("}").toString();
     }
 }
