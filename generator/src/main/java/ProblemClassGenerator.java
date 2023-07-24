@@ -69,8 +69,10 @@ public class ProblemClassGenerator {
             .append(COMMENT_INDENT).append("[출력]").append("\n")
             .append(COMMENT_INDENT).append(problemOutput).append("\n").append("\n")
             .append(COMMENT_END).append("\n")
-            .append(ONE_LEVEL_INDENT).append("public static void main(String[] args) {").append("\n")
+            .append(ONE_LEVEL_INDENT).append("public static void main(String[] args) throws IOException {").append("\n")
             .append(ONE_LEVEL_INDENT).append("}").append("\n")
+                .append(ONE_LEVEL_INDENT).append("BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));\n")
+                .append(ONE_LEVEL_INDENT).append("String s = reader.readLine();")
             .append("}").toString();
     }
 }
