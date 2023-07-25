@@ -33,12 +33,10 @@ public class P1676 {
 
     private static int countZero(BigDecimal number) {
         int ret = 0;
-        char[] reverse = new StringBuilder(String.valueOf(number)).reverse().toString().toCharArray();
-        for (char c : reverse) {
-            if (c != '0') {
-                return ret;
-            }
+        BigDecimal ten = BigDecimal.TEN;
+        while (number.remainder(ten).compareTo(BigDecimal.ZERO) == 0 && number.compareTo(BigDecimal.TEN) >= 0) {
             ret++;
+            number = number.divide(ten);
         }
         return ret;
     }
