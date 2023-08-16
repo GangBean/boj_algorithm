@@ -27,7 +27,7 @@ public class ProblemClassGenerator {
     public static final String ONE_LEVEL_INDENT = "    ";
     public static final String COMMENT_INDENT = "    * ";
     public static final String COMMENT_END = "    */";
-
+0
     public static void main(String[] args) throws IOException {
         System.out.print("> 문제번호를 입력하세요: ");
         generate(new Scanner(System.in).nextInt());
@@ -43,10 +43,11 @@ public class ProblemClassGenerator {
     }
 
     private static String getStringValue(Document document, String id) {
-        return Objects.requireNonNull(
-            document.getElementById(id)).select(P_TAG).stream()
-            .map(Element::text)
-            .reduce(BLANK_STRING, STRING_CONCAT).replaceAll(LINE_END, END_WITH_LINE_FEED);
+        return Objects.requireNonNull(document.getElementById(id))
+                .select(P_TAG)
+                .stream()
+                .map(Element::text)
+                .reduce(BLANK_STRING, STRING_CONCAT).replaceAll(LINE_END, END_WITH_LINE_FEED);
     }
 
     private static void write(int problemNumber, String problemDescription
