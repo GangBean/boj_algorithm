@@ -1,3 +1,8 @@
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -6,10 +11,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.function.BinaryOperator;
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
 public class ProblemClassGenerator {
 
@@ -27,7 +28,7 @@ public class ProblemClassGenerator {
     public static final String ONE_LEVEL_INDENT = "    ";
     public static final String COMMENT_INDENT = "    * ";
     public static final String COMMENT_END = "    */";
-0
+
     public static void main(String[] args) throws IOException {
         System.out.print("> 문제번호를 입력하세요: ");
         generate(new Scanner(System.in).nextInt());
