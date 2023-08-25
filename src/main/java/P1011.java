@@ -30,7 +30,6 @@ public class P1011 {
     * 
 
     */
-    static final int[] STEP = {-1, 0, 1};
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(reader.readLine());
@@ -40,33 +39,16 @@ public class P1011 {
             int[] nums = Arrays.stream(reader.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             int start = nums[0];
             int end = nums[1];
-            boolean[] isVisited = new boolean[end + 1];
-            PriorityQueue<int[]> q = new PriorityQueue<>((a, b) -> (a[2] == b[2])? Integer.compare(b[0], a[0]) : Integer.compare(a[2], b[2]));
-            q.offer(new int[]{start, 0, 0});
-            isVisited[start] = true;
-            int min = 0;
+            int maxSpeed = (int) Math.sqrt(end - start);
+            int maxDistance = maxSpeed * maxSpeed;
+            int remain = end - start - maxDistance;
+            int count = 2 * maxSpeed - 1;
 
-            while (!q.isEmpty()) {
-                int[] current = q.poll();
-                int position = current[0];
-                int distance = current[1];
-                int stepCount = current[2];
-                if (position == end - 1) {
-                    min = stepCount + 1;
-                    break;
-                }
-
-                for (int step : STEP) {
-                    if (distance + step <= 0) continue;
-                    int nextPosition = position + (distance + step);
-                    if (nextPosition < end && !isVisited[nextPosition]) {
-                        isVisited[nextPosition] = true;
-                        q.offer(new int[]{nextPosition, distance + step, stepCount + 1});
-                    }
-                }
+            while (remain > 0) {
+                remain -= maxSpeed;
+                count++;
             }
-
-            joiner.add(String.valueOf(min));
+            joiner.add(String.valueOf(count));
         }
 
         System.out.println(joiner);
