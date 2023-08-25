@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.Arrays;
 
 public class P9251 {
 
@@ -26,54 +23,32 @@ public class P9251 {
     * 
 
     */
+    static char[] S;
+    static char[] L;
+    static int[][] dp;
     public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String S = reader.readLine();
-        String L = reader.readLine();
-        if (S.length() > L.length()) {
-            String tmp = S;
-            S = L;
-            L = tmp;
-        }
+        S = reader.readLine().toCharArray();
+        L = reader.readLine().toCharArray();
 
-        int ret = 0;
-        StringBuilder candidate = new StringBuilder();
-        Map<Character, Queue<Integer>> occurrence = new HashMap<>();
-        for (int i = 0; i < S.length(); i++) {
-            for (int j = 0; j < L.length(); j++) {
-                if (S.charAt(i) == L.charAt(j)) {
-                    Queue<Integer> idxQueue = occurrence.getOrDefault(S.charAt(i), new LinkedList<>());
-                    idxQueue.offer(j);
-                    occurrence.put(S.charAt(i), idxQueue);
-                }
+        dp = new int[S.length][L.length];
+        for (int[] arr : dp) {
+            Arrays.fill(arr, -1);
+        }
+        System.out.println(lcs(S.length-1, L.length-1));
+    }
+
+    public static int lcs(int s, int l) {
+        if (s < 0 || l < 0) return 0;
+
+        if (dp[s][l] == -1) {
+            if (S[s] == L[l]) {
+                dp[s][l] = lcs(s-1, l-1) + 1;
+                return dp[s][l];
             }
+            dp[s][l] = Math.max(lcs(s-1, l), lcs(s, l-1));
         }
 
-        for (int i = 0; i < S.length(); i++) {
-            HashMap<Character, Queue<Integer>> copy = new HashMap<>(occurrence);
-            int last = -1;
-            for (int j = i; j < S.length(); j++) {
-                char c = S.charAt(j);
-                if (!occurrence.containsKey(c)) continue;
-                Queue<Integer> queue = copy.get(c);
-                int current = -1;
-                while (!queue.isEmpty() && current <= last) {
-                    current = queue.poll();
-                }
-                if (current <= last) {
-                    copy = new HashMap<>(occurrence);
-                    ret = Math.max(ret, candidate.length());
-                    candidate = new StringBuilder();
-                    last = -1;
-                    continue;
-                }
-                candidate.append(c);
-                last = current;
-            }
-            ret = Math.max(ret, candidate.length());
-            candidate = new StringBuilder();
-        }
-
-        System.out.println(ret);
+        return dp[s][l];
     }
 }
