@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Stack;
+
 public class P1406 {
 
     /**
@@ -26,6 +31,89 @@ public class P1406 {
     * 
 
     */
-    public static void main(String[] args) {
+    static final int LEN = 600_000;
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String s = reader.readLine();
+        Cursor cursor = new Cursor(s.toCharArray());
+        int N = Integer.parseInt(reader.readLine());
+        while (N-- > 0) {
+            String[] split = reader.readLine().split(" ");
+            if (split[0].equals("L")) {
+                cursor.left();
+                continue;
+            }
+            if (split[0].equals("D")) {
+                cursor.right();
+                continue;
+            }
+            if (split[0].equals("B")) {
+                cursor.remove();
+                continue;
+            }
+            if (split[0].equals("P")) {
+                cursor.insert(split[1].charAt(0));
+            }
+        }
+
+        System.out.println(cursor);
+    }
+
+    static class Cursor {
+        Stack<Character> left;
+        Stack<Character> right;
+
+        public Cursor(char... value) {
+            left = new Stack<>();
+            right = new Stack<>();
+            for (char c : value) {
+                left.push(c);
+            }
+        }
+
+        public void left() {
+            if (left.isEmpty()) return;
+            right.push(left.pop());
+        }
+
+        public void right() {
+            if (right.isEmpty()) return;
+            left.push(right.pop());
+        }
+
+        public void remove() {
+            if (left.isEmpty()) return;
+            left.pop();
+        }
+
+        public void insert(char c) {
+            left.push(c);
+        }
+
+        @Override
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder();
+            while (!left.isEmpty()) {
+                right.push(left.pop());
+            }
+            while (!right.isEmpty()) {
+                stringBuilder.append(right.pop());
+            }
+            return stringBuilder.toString();
+        }
+    }
+
+    static class Chr {
+        char value;
+        boolean isDeleted;
+
+        public Chr(char value, boolean isDeleted) {
+            this.value = value;
+            this.isDeleted = isDeleted;
+        }
+
+        public void delete() {
+            this.isDeleted = true;
+        }
     }
 }
