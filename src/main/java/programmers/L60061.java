@@ -10,7 +10,7 @@ public class L60061 {
         static final int ADD = 1;
         static final int REMOVE = 0;
         static final int[][] DIR = {
-                {1,0}, {-1,0}, {0,1}, {0,-1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}, {0, 2}, {1, 2}, {-1, 2}
+                {1,0}, {-1,0}, {0,1}, {0,-1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}
         };
         public int[][] solution(int n, int[][] build_frame) {
             boolean[][][] map = new boolean[n+1][n+1][2];
@@ -36,12 +36,15 @@ public class L60061 {
                     // for (int[] dir : DIR) {
                     //     int ny = y + dir[0];
                     //     int nx = x + dir[1];
-                    //     if (0 <= ny && ny <= n
-                    //        && 0 <= nx && nx <= n
-                    //        && !new Point(nx, ny, map[ny][nx]).isOk(map)) {
-                    //         isOk = false;
-                    //         break;
+                    //     for (int t = 0; t < 2; t++) {
+                    //         if (0 <= ny && ny <= n
+                    //            && 0 <= nx && nx <= n
+                    //            && map[ny][nx][t] && !new Point(nx, ny, t).isOk(map)) {
+                    //             isOk = false;
+                    //             break;
+                    //         }
                     //     }
+                    //     if (!isOk) break;
                     // }
 
                     for (int ny = 0; ny <= n; ny++) {
