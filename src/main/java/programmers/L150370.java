@@ -12,7 +12,8 @@ public class L150370 {
         static final int MONTH = 28;
         public int[] solution(String today, String[] terms, String[] privacies) {
             List<Integer> answer = new ArrayList<>();
-            Map<String, Integer> term = new HashMap<>();
+            Map<String, Integer> term = new HashMap<
+                >();
             for (String t : terms) {
                 String[] s = t.split(" ");
                 term.put(s[0], Integer.parseInt(s[1]) * MONTH);
